@@ -1,5 +1,3 @@
-
-
 select id,
 sum(case when month='Jan' then revenue end) as Jan_Revenue,
 sum(case when month='Feb' then revenue end) as Feb_Revenue,
