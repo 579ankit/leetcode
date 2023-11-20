@@ -11,3 +11,5 @@ WHERE employee_id in (
     SELECT *
     FROM A
 ) OR primary_flag = 'Y'
+
+
