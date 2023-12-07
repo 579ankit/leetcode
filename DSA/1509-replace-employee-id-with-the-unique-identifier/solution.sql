@@ -1,4 +1,3 @@
-select e1.unique_id, e.name 
-from employees e left join 
-employeeuni e1 on e.id = e1.id
-
+select e2.unique_id ,e1.name from
+employees e1 left join EmployeeUNI e2
+using(id) 
