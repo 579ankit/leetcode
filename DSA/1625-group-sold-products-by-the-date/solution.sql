@@ -1,5 +1,4 @@
 select sell_date,count(distinct product)
-as num_sold,group_concat(distinct product) 
-as products 
+num_sold,group_concat(distinct product order by product) products
 from activities
-group by sell_date
+group by sell_date;
