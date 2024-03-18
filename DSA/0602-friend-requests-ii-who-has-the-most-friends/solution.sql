@@ -1,12 +1,13 @@
-with cte as
+with cte as 
 (
-    select requester_id as id from RequestAccepted
-    union all
-    select accepter_id from RequestAccepted
+select requester_id as id
+from requestaccepted
+union all
+select accepter_id
+from requestaccepted
 )
-
-select id,count(*) as num
+select id, count(*) as num
 from cte
 group by id
-order by num desc 
-limit 1
+order by num 
+desc limit 1;
