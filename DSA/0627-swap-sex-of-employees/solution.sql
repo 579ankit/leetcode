@@ -1,4 +1,5 @@
-update salary set sex=
-case when sex='m' then 'f'
+update Salary 
+set sex = case 
 when sex='f' then 'm'
-end
+when sex='m' then 'f'
+end ;
