@@ -10,8 +10,6 @@ class Solution(object):
         max_diff=float('inf')
         res_sum=0
         for i in range(n-2):
-            if i>0 and nums[i]==nums[i-1]:
-                continue
             left=i+1
             right=n-1
             while left<right:
@@ -24,6 +22,6 @@ class Solution(object):
                     return res_sum
                 elif s<target:
                     left+=1
-                else:
+                elif s>target:
                     right-=1
         return res_sum
