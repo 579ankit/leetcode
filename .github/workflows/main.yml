@@ -3,14 +3,17 @@ name: LeetCode Sync
 on:
   workflow_dispatch:
   schedule:
-    - cron: "30 * * * *"   # Runs every 30 mins
+    - cron: "*/5 * * * *"   # Runs every 5 mins
+
+permissions:
+  contents: write
 
 jobs:
   sync:
     runs-on: ubuntu-latest
 
     steps:
-      - name: LeetCode DSA Sync
+      - name: LeetCode Sync
         uses: joshcai/leetcode-sync@v1.7
         with:
           github-token: ${{ github.token }}
@@ -18,4 +21,29 @@ jobs:
           leetcode-session: ${{ secrets.LEETCODE_SESSION }}
           destination-folder: DSA
           verbose: true
-          commit-header: "[LeetCode DSA Sync]"
+          commit-header: "[LeetCode Sync]"
+
+      - name: Checkout repo
+        uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - name: Move SQL solutions to SQL folder
+        run: |
+          mkdir -p SQL
+          # Move any .sql files from DSA/ to SQL/, preserving the problem folder name
+          find DSA -name "*.sql" | while read file; do
+            dir=$(dirname "$file" | sed 's|^DSA|SQL|')
+            mkdir -p "$dir"
+            mv "$file" "$dir/"
+          done
+          # Remove empty directories left behind in DSA/
+          find DSA -type d -empty -delete 2>/dev/null || true
+
+      - name: Commit and push SQL moves
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git diff --cached --quiet || git commit -m "[LeetCode SQL Sync] Move SQL solutions to SQL folder"
+          git push
