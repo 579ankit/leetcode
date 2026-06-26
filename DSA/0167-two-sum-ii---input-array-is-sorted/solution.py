@@ -5,12 +5,13 @@ class Solution(object):
         :type target: int
         :rtype: List[int]
         """
-        i,j,s=0,len(numbers)-1,0
+        n=len(numbers)
+        i,j=0,n-1
         while i<j:
             s=numbers[i]+numbers[j]
             if s==target:
                 return [i+1,j+1]
-            elif s>target:
-                j-=1
-            else:
+            elif s<target:
                 i+=1
+            else:
+                j-=1
