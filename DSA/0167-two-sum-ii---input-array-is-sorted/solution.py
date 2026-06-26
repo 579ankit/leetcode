@@ -5,8 +5,7 @@ class Solution(object):
         :type target: int
         :rtype: List[int]
         """
-        i=0
-        j=len(numbers)-1
+        i,j,s=0,len(numbers)-1,0
         while i<j:
             s=numbers[i]+numbers[j]
             if s==target:
@@ -15,4 +14,3 @@ class Solution(object):
                 j-=1
             else:
                 i+=1
-        
