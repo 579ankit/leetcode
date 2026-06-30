@@ -18,10 +18,8 @@ class Solution(object):
                 if diff<max_diff:
                     max_diff=diff
                     res_sum=s
-                elif s==target:
-                    return res_sum
                 elif s<target:
                     left+=1
-                elif s>target:
+                else:
                     right-=1
         return res_sum
