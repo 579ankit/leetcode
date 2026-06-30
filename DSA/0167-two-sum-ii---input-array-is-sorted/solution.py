@@ -11,7 +11,7 @@ class Solution(object):
             s=numbers[i]+numbers[j]
             if s==target:
                 return [i+1,j+1]
-            elif s<target:
-                i+=1
-            else:
+            elif s>target:
                 j-=1
+            else:
+                i+=1
