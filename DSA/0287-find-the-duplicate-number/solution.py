@@ -7,11 +7,10 @@ class Solution(object):
         slow=fast=nums[0]
         while True:
             slow=nums[slow]
-            fast=nums[fast]
-            fast=nums[fast]
+            fast=nums[nums[fast]]
             if slow==fast:
                 slow=nums[0]
                 while slow!=fast:
                     slow=nums[slow]
                     fast=nums[fast]
-                return slow
+                return fast
