@@ -11,6 +11,7 @@ class Solution(object):
         """
         if not head:
             return head
+
         off=head
         cm=head.next
         while cm:
@@ -22,3 +23,6 @@ class Solution(object):
                 cm=cm.next
         off.next=None
         return head
+
+
+        
