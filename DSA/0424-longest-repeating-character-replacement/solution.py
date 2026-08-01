@@ -6,10 +6,10 @@ class Solution(object):
         :type k: int
         :rtype: int
         """
-        low=0
-        n=len(s)
+        low=res=0
         freq={}
-        max_count,res=0,0
+        n=len(s)
+        max_count=0
         for high in range(n):
             freq[s[high]]=freq.get(s[high],0)+1
             length=high-low+1

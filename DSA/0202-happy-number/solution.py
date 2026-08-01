@@ -4,7 +4,7 @@ class Solution(object):
         while n>0:
             d=n%10
             s=s+d*d
-            n=n//10
+            n//=10
         return s
 
     def isHappy(self, n):

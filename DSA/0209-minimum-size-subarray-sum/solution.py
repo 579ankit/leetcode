@@ -5,16 +5,18 @@ class Solution(object):
         :type nums: List[int]
         :rtype: int
         """
+        low=0
         n=len(nums)
-        window_sum,low,min_len=0,0,float('inf')
+        s=0
+        res=float('inf')
         for high in range(n):
-            window_sum+=nums[high]
-            while window_sum>=target:
+            s=s+nums[high]
+            while s>=target:
                 length=high-low+1
-                min_len=min(min_len,length)
-                window_sum-=nums[low]
+                res=min(res,length)
+                s=s-nums[low]
                 low+=1
-        if min_len==float('inf'):
+        if res==float('inf'):
             return 0
         else:
-            return min_len
+            return res

@@ -1,28 +1,28 @@
 class Solution(object):
-    def maxsum(self,nums):
-        bestending=ans1=nums[0]
+    def maxSubArray(self,nums):
+        best_ending=res=nums[0]
         for i in range(1,len(nums)):
             v1=nums[i]
-            v2=bestending+nums[i]
-            bestending=max(v1,v2)
-            ans1=max(ans1,bestending)
-        return ans1
+            v2=nums[i]+best_ending
+            best_ending=max(v1,v2)
+            res=max(res,best_ending)
+        return res
 
-    def minsum(self,nums):
-        bestending=ans2=nums[0]
+    def minSubArray(self,nums):
+        best_ending=res=nums[0]
         for i in range(1,len(nums)):
             v1=nums[i]
-            v2=bestending+nums[i]
-            bestending=min(v1,v2)
-            ans2=min(ans2,bestending)
-        return ans2
+            v2=nums[i]+best_ending
+            best_ending=min(v1,v2)
+            res=min(res,best_ending)
+        return res
 
     def maxAbsoluteSum(self, nums):
         """
         :type nums: List[int]
         :rtype: int
         """
-        v1=abs(self.maxsum(nums))
-        v2=abs(self.minsum(nums))
-        ans=max(v1,v2)
-        return ans
+        v1=abs(self.maxSubArray(nums))
+        v2=abs(self.minSubArray(nums))
+        res=max(v1,v2)
+        return res

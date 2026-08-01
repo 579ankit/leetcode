@@ -4,10 +4,9 @@ class Solution(object):
         :type s: str
         :rtype: int
         """
-        low=0
-        n=len(s)
         freq={}
-        res=0
+        low=res=0
+        n=len(s)
         for high in range(n):
             freq[s[high]]=freq.get(s[high],0)+1
             k=high-low+1
@@ -16,8 +15,7 @@ class Solution(object):
                 if freq[s[low]]==0:
                     del freq[s[low]]
                 low+=1
-                k=high-low+1.
+                k=high-low+1
             length=high-low+1
             res=max(res,length)
         return res
-

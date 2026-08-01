@@ -15,7 +15,7 @@ class Solution(object):
                 s=nums[i]+nums[left]+nums[right]
                 diff=abs(s-target)
                 if diff<max_diff:
-                    max_diff=diff
+                    max_diff=diff 
                     res_sum=s
                 if s<target:
                     left+=1

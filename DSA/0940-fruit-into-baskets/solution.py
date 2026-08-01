@@ -4,9 +4,9 @@ class Solution(object):
         :type fruits: List[int]
         :rtype: int
         """
-        n=len(fruits)
-        low=res=0
         freq={}
+        n=len(fruits)
+        res=low=0
         for high in range(n):
             freq[fruits[high]]=freq.get(fruits[high],0)+1
             while len(freq)>2:
