@@ -50,8 +50,10 @@ class MissingSubmissionCodeError(LeetCodeSyncError):
 def authentication_error(detail):
     return LeetCodeSyncError(
         f"LeetCode authentication failed: {detail} "
-        "Refresh the LEETCODE_SESSION and LEETCODE_CSRF_TOKEN repository secrets "
-        "from a currently signed-in leetcode.com browser session."
+        "The secrets were present and parsed, but leetcode.com did not accept "
+        "the session cookie. Refresh LEETCODE_SESSION and LEETCODE_CSRF_TOKEN "
+        "from DevTools > Application > Cookies for a currently signed-in "
+        "https://leetcode.com browser session, then rerun the workflow."
     )
 
 
