@@ -1,3 +1,4 @@
+import hashlib
 import os
 import re
 import sys
@@ -89,6 +90,10 @@ def secret_format_description(raw_value, cookie_name):
     else:
         format_name = "raw value"
     return f"{format_name}, parsed length {len(parsed_value)}"
+
+
+def secret_fingerprint(value):
+    return hashlib.sha256(value.encode("utf-8")).hexdigest()[:12]
 
 
 def slugify(value):
@@ -338,6 +343,14 @@ def main():
         "Secret formats: "
         f"LEETCODE_SESSION is {secret_format_description(raw_session_cookie, 'LEETCODE_SESSION')}; "
         f"LEETCODE_CSRF_TOKEN is {secret_format_description(raw_csrf_token, 'csrftoken')}.",
+        flush=True,
+    )
+    print(
+        "Secret fingerprints: "
+        f"LEETCODE_SESSION sha256:{secret_fingerprint(session_cookie)}; "
+        f"LEETCODE_CSRF_TOKEN sha256:{secret_fingerprint(csrf_token)}. "
+        "These are safe to compare between workflow runs; if they do not change "
+        "after refreshing secrets, GitHub Actions is still using the old values.",
         flush=True,
     )
     try:
