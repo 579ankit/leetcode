@@ -8,14 +8,10 @@ class Solution(object):
         res=float('inf')
         for ch in text:
             have[ch]=have.get(ch,0)+1
-        
-        balloon='balloon'
-        for ch in balloon:
+        bal='balloon'
+        for ch in bal:
             need[ch]=need.get(ch,0)+1
         
         for ch in need:
-            if ch not in have:
-                return 0
-            else:
-                res=min(res,have[ch]//need[ch])
+            res=min(res,have.get(ch,0)//need[ch])
         return res
