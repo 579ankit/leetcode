@@ -7,7 +7,10 @@ with first_login as(
 )
 
 select 
-    round(sum(datediff(a.event_date,f.first_login_date)=1)/count(distinct a.player_id),2) as fraction
+    round(sum(datediff(
+        a.event_date,f.first_login_date)=1)
+        /count(distinct a.player_id),2) as fraction
 from activity a
 left join first_login f
-on a.player_id=f.player_id;
+on 
+    a.player_id=f.player_id;
