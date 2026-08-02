@@ -4,18 +4,19 @@ class Solution(object):
         :type nums: List[int]
         :rtype: int
         """
-        zero,one,res=0,0,0
-        mp={}
+        zero,one=0,0
+        d={}
+        res=0
         for i in range(len(nums)):
             if nums[i]==0:
                 zero+=1
             else:
                 one+=1
             diff=zero-one
-            if diff == 0:
-                res = max(res, i + 1)
-            elif diff in mp:
-                res = max(res, i - mp[diff])
+            if diff==0:
+                res=max(res,i+1)
+            elif diff in d:
+                res=max(res,i-d[diff])
             else:
-                mp[diff] = i
+                d[diff]=i
         return res

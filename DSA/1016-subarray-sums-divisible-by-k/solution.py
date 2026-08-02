@@ -5,13 +5,14 @@ class Solution(object):
         :type k: int
         :rtype: int
         """
-        d=dict()
-        d[0],s,res=1,0,0
-        for i in range(len(nums)):
-            s+=nums[i]
-            rem=s%k
-            if rem<0:
-                rem+=k
-            res+=d.get(rem,0)
-            d[rem]=d.get(rem,0)+1
+        d={}
+        s=res=0
+        d[0]=1
+        for num in nums:
+            s+=num
+            ques=s%k
+            if ques<0:
+                ques+=k
+            res+=d.get(ques,0)
+            d[ques]=d.get(ques,0)+1
         return res

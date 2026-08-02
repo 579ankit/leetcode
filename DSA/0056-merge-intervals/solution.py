@@ -11,7 +11,7 @@ class Solution(object):
         for i in range(1,len(intervals)):
             start2=intervals[i][0]
             end2=intervals[i][1]
-            if start2<=end1:
+            if end1>=start2:
                 end1=max(end1,end2)
                 continue
             res.append([start1,end1])
