@@ -7,7 +7,7 @@ class Solution(object):
         """
         d=dict()
         d[0]=1
-        count,s=0,0
+        count=s=0
         for i in range(len(nums)):
             s+=nums[i]
             ques=s-k
