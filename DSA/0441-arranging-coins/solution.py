@@ -1,18 +1,18 @@
 class Solution(object):
-    def mySqrt(self, x):
+    def arrangeCoins(self, n):
         """
-        :type x: int
+        :type n: int
         :rtype: int
         """
         low=0
-        high=x
+        high=n
         while low<=high:
             guess=(low+high)//2
-            square=guess*guess
-            if x==round(square):
+            coins = guess*(guess+1)//2
+            if coins==n:
                 return guess
-            elif square<x:
-                low=guess+1
-            else:
+            elif coins>n:
                 high=guess-1
+            else:
+                low=guess+1
         return high
