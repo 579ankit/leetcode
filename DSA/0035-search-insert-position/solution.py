@@ -1,10 +1,18 @@
-class Solution:
-    def searchInsert(self, nums: List[int], target: int) -> int:
-        for i in range(len(nums)):
-            if nums[i]==target:
-                return i
-            elif nums[i]>target:
-                return i   
+class Solution(object):
+    def searchInsert(self, nums, target):
+        """
+        :type nums: List[int]
+        :type target: int
+        :rtype: int
+        """
+        low=0
+        high=len(nums)-1
+        while low<=high:
+            guess=(low+high)//2
+            if nums[guess]==target:
+                return guess
+            elif nums[guess]<target:
+                low=guess+1
             else:
-                j=len(nums)
-        return j 
+                high=guess-1
+        return low

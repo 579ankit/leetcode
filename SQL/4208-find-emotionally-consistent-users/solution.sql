@@ -1,24 +1,29 @@
-WITH cte AS (
-    SELECT
+with reaction_cte as(
+    select
         user_id,
         reaction,
-        COUNT(*) AS reaction_count,
-        SUM(COUNT(*)) OVER(PARTITION BY user_id) AS total_count,
-        DENSE_RANK() OVER(
-            PARTITION BY user_id
-            ORDER BY COUNT(*) DESC
-        ) AS rnk
-    FROM reactions
-    GROUP BY user_id, reaction
+        count(*) as reaction_count,
+        dense_rank() over(partition by user_id order by count(*) desc) as rn
+        from reactions
+        group by 
+            user_id,
+            reaction
 )
-SELECT
-    user_id,
-    reaction as dominant_reaction,
-    ROUND(reaction_count * 1.0 / total_count, 2) AS reaction_ratio
-FROM cte
-WHERE rnk = 1
-  AND reaction_count * 1.0 / total_count >= 0.6
-  AND total_count >= 5
-order by 
+select
+    r.user_id,
+    rc.reaction as dominant_reaction,
+    round(rc.reaction_count*1.0/count(*),2) as reaction_ratio
+from reactions r
+join reaction_cte rc
+on r.user_id=rc.user_id
+where rc.rn=1
+group by
+    r.user_id,
+    rc.reaction,
+    rc.reaction_count
+having 
+    count(*)>=5
+AND rc.reaction_count * 1.0 / COUNT(*) >= 0.60
+order by
     reaction_ratio desc,
-    user_id asc;
+    r.user_id

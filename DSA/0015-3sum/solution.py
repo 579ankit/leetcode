@@ -4,9 +4,9 @@ class Solution(object):
         :type nums: List[int]
         :rtype: List[List[int]]
         """
+        nums.sort()
         n=len(nums)
         res=[]
-        nums.sort()
         for i in range(n-2):
             if i>0 and nums[i]==nums[i-1]:
                 continue
@@ -27,4 +27,4 @@ class Solution(object):
                     left+=1
                 else:
                     right-=1
-        return res
+        return res  

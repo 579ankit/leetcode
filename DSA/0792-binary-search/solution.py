@@ -5,15 +5,13 @@ class Solution(object):
         :type target: int
         :rtype: int
         """
-        low=0
-        high=len(nums)-1
+        low,high=0,len(nums)-1
         while low<=high:
-            guess=(low+high)/2
+            guess=(low+high)//2
             if nums[guess]==target:
                 return guess
-            elif nums[guess]<target:
-                low=guess+1
-            else:
+            elif nums[guess]>target:
                 high=guess-1
+            else:
+                low=guess+1
         return -1
-
