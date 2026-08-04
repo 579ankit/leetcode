@@ -5,8 +5,9 @@ class Solution(object):
         :rtype: List[int]
         """
         n=len(nums)
-        i,j,k=0,n-1,n-1
+        i,j=0,n-1
         res=[0]*n
+        k=n-1
         while i<=j:
             isq=nums[i]*nums[i]
             jsq=nums[j]*nums[j]
