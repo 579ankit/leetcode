@@ -17,8 +17,6 @@ class Solution(object):
             diff=length-max_count
             if diff>k:
                 freq[s[low]]-=1
-                if freq[s[low]]==0:
-                    del freq[s[low]]
                 low+=1
             length=high-low+1
             res=max(res,length)
