@@ -1,6 +1,21 @@
-select round(sum(if (x.drnk=1 and x.order_date=x.customer_pref_delivery_date,1,0)*100)/count(distinct customer_id),2) as immediate_percentage 
-from (
-      select * ,dense_rank() over( partition by customer_id order by order_date) as drnk
-      from delivery) x
-           
-          
+with cte as(
+    select
+        customer_id,
+        delivery_id,
+        order_date,
+        customer_pref_delivery_date,
+        dense_rank() over(partition by customer_id order by order_date) as rnk
+    from delivery
+)
+
+select 
+    round(
+        sum(case 
+            when order_date=customer_pref_delivery_date
+            then 1
+            else 0
+        end)*100/count(*)
+        ,2
+    ) as immediate_percentage 
+from cte
+where rnk=1;
