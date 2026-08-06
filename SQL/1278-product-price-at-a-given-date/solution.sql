@@ -1,28 +1,29 @@
 with cte as(
-    select distinct
+    select 
         product_id,
         new_price as price,
         dense_rank() over(
             partition by product_id
-            order by change_date desc
-        ) as product_partition
-        from products
-        where change_date<='2019-08-16'
+            order by change_date desc)
+        as rnk
+    from products
+    where change_date<='2019-08-16'
 )
-select
+
+select 
     product_id,
-    price 
+    price
 from cte
-where product_partition=1
+where rnk=1
 
 union
 
-select 
+select
     product_id,
     10 as price
 from products
 where product_id not in(
     select
-        product_id
+        product_id 
     from cte
-)
+);
