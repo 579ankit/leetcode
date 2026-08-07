@@ -1,20 +1,14 @@
 class Solution(object):
-    def checkPallindrome(self,s,low,high):
+    def checkPalindrome(self, s, low, high):
         if low >= high:
             return True
-        if s[low] != s[high]:
+        if not s[low].isalnum():
+            return self.checkPalindrome(s, low + 1, high)
+        if not s[high].isalnum():
+            return self.checkPalindrome(s, low, high - 1)
+        if s[low].lower() != s[high].lower():
             return False
-        return self.checkPallindrome(s,low+1,high-1)
+        return self.checkPalindrome(s, low + 1, high - 1)
 
     def isPalindrome(self, s):
-        """
-        :type s: str
-        :rtype: bool
-        """
-        low=0
-        normalized = ""
-        for ch in s:
-            if ch.isalnum():
-                normalized += ch.lower()
-        high=len(normalized)-1
-        return self.checkPallindrome(normalized,low,high)
+        return self.checkPalindrome(s, 0, len(s) - 1)
