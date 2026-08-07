@@ -1,13 +1,22 @@
-select 
-    distinct visited_on, 
-    amount, 
-    round(amount/7, 2) as average_amount
-from (
-    select 
+WITH daily AS (
+    SELECT
         visited_on,
-        sum(amount) over (
-            order by visited_on range between interval 6 day preceding and current row) as amount,
-        dense_rank() over (order by visited_on) as rk
-    from Customer
-) as t
-where rk >= 7;
+        SUM(amount) AS amount
+    FROM Customer
+    GROUP BY visited_on
+)
+SELECT
+    visited_on,
+    SUM(amount) OVER (
+        ORDER BY visited_on
+        RANGE BETWEEN INTERVAL 6 DAY PRECEDING AND CURRENT ROW
+    ) AS amount,
+    ROUND(
+        AVG(amount) OVER (
+            ORDER BY visited_on
+            RANGE BETWEEN INTERVAL 6 DAY PRECEDING AND CURRENT ROW
+        ),
+        2
+    ) AS average_amount
+FROM daily
+LIMIT 1000000 OFFSET 6;

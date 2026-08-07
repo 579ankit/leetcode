@@ -1,8 +1,18 @@
-select round(sum(tiv_2016),2)
-as tiv_2016 from insurance i1
-where tiv_2015 in 
-(select tiv_2015 from insurance i2
-where i1.pid != i2.pid)
-and (lat,lon) not in 
-(select lat,lon from insurance i3
-where i3.pid != i1.pid)
+WITH duplicate_tiv AS (
+    SELECT tiv_2015
+    FROM Insurance
+    GROUP BY tiv_2015
+    HAVING COUNT(*) > 1
+),
+unique_location AS (
+    SELECT lat, lon
+    FROM Insurance
+    GROUP BY lat, lon
+    HAVING COUNT(*) = 1
+)
+
+SELECT
+    ROUND(SUM(tiv_2016), 2) AS tiv_2016
+FROM Insurance
+WHERE tiv_2015 IN (SELECT tiv_2015 FROM duplicate_tiv)
+AND (lat, lon) IN (SELECT lat, lon FROM unique_location);
