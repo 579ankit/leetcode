@@ -5,14 +5,14 @@ class Solution(object):
         :type k: int
         :rtype: int
         """
-        d={}
-        s=res=0
-        d[0]=1
-        for num in nums:
-            s+=num
-            ques=s%k
+        freq={0:1}
+        count=0
+        sumi=0
+        for i in range(len(nums)):
+            sumi+=nums[i]
+            ques=sumi%k
             if ques<0:
                 ques+=k
-            res+=d.get(ques,0)
-            d[ques]=d.get(ques,0)+1
-        return res
+            count+=freq.get(ques,0)
+            freq[ques]=freq.get(ques,0)+1
+        return count

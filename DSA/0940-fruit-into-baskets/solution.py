@@ -5,9 +5,9 @@ class Solution(object):
         :rtype: int
         """
         freq={}
-        n=len(fruits)
-        res=low=0
-        for high in range(n):
+        low=high=0
+        res=0
+        for high in range(len(fruits)):
             freq[fruits[high]]=freq.get(fruits[high],0)+1
             while len(freq)>2:
                 freq[fruits[low]]-=1
