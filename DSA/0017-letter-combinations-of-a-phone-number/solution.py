@@ -1,5 +1,5 @@
 class Solution(object):
-    def fun(self,s,n,idx,diary,res):
+    def fun(self,s,n,diary,res,idx):
         if idx==n:
             res.append(''.join(diary))
             return
@@ -7,7 +7,7 @@ class Solution(object):
         choice=phone[s[idx]]
         for i in range(len(choice)):
             diary.append(choice[i])
-            self.fun(s,n,idx+1,diary,res)
+            self.fun(s,n,diary,res,idx+1)
             diary.pop()
     def letterCombinations(self, digits):
         """
@@ -16,8 +16,6 @@ class Solution(object):
         """
         if not digits:
             return []
-        res=[]
-        diary=[]
-        n=len(digits)
-        self.fun(digits,n,0,diary,res)
+        res,diary=[],[]
+        self.fun(digits,len(digits),diary,res,0)
         return res
