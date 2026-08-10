@@ -7,4 +7,4 @@ transactions t
 on v.visit_id=t.visit_id
 where t.visit_id is null
 group by
-    v.customer_id;
+    v.customer_id
