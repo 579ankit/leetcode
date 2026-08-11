@@ -3,7 +3,7 @@ select
 from (
     select
         num
-    from mynumbers 
+    from mynumbers
     group by num
     having count(*)=1
-) t;
+) t
