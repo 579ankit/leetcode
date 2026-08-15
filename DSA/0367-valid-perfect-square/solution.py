@@ -11,7 +11,6 @@ class Solution(object):
         while low<=high:
             guess=(low+high)//2
             square=guess*guess
-
             if num==square:
                 return True
             elif num>square:
