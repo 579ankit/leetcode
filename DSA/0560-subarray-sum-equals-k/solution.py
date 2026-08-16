@@ -1,11 +1,11 @@
 class Solution:
     def subarraySum(self, nums, k):
-        freq = {0: 1}
-        count = 0
-        sumi = 0
+        freq={}
+        freq[0]=1
+        s=c=0
         for i in range(len(nums)):
-            sumi += nums[i]
-            ques = sumi - k
-            count += freq.get(ques, 0)
-            freq[sumi] = freq.get(sumi, 0) + 1
-        return count
+            s+=nums[i]
+            ques=s-k
+            c+=freq.get(ques,0)
+            freq[s]=freq.get(s,0)+1
+        return c
