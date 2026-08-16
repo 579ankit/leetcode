@@ -7,7 +7,7 @@ class Solution(object):
         left=0
         total=sum(nums)
         for i in range(len(nums)):
-            right=total-nums[i]-left
+            right=total-left-nums[i]
             if left==right:
                 return i
             left+=nums[i]

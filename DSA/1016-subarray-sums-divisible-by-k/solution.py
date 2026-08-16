@@ -6,13 +6,12 @@ class Solution(object):
         :rtype: int
         """
         freq={0:1}
-        count=0
-        sumi=0
+        s=c=0
         for i in range(len(nums)):
-            sumi+=nums[i]
-            ques=sumi%k
+            s+=nums[i]
+            ques=s%k
             if ques<0:
                 ques+=k
-            count+=freq.get(ques,0)
+            c+=freq.get(ques,0)
             freq[ques]=freq.get(ques,0)+1
-        return count
+        return c
