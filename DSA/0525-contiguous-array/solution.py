@@ -4,8 +4,8 @@ class Solution(object):
         :type nums: List[int]
         :rtype: int
         """
-        zero,one=0,0
-        d={}
+        freq={}
+        zero=one=0
         res=0
         for i in range(len(nums)):
             if nums[i]==0:
@@ -15,8 +15,8 @@ class Solution(object):
             diff=zero-one
             if diff==0:
                 res=max(res,i+1)
-            elif diff in d:
-                res=max(res,i-d[diff])
+            elif diff in freq:
+                res=max(res,i-freq[diff])
             else:
-                d[diff]=i
+                freq[diff]=i
         return res
