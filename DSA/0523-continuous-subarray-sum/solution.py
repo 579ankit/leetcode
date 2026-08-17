@@ -5,14 +5,14 @@ class Solution(object):
         :type k: int
         :rtype: bool
         """
-        freq = {0: -1}
-        prefix_sum = 0
+        freq={0:-1}
+        prefix_sum=0
         for i in range(len(nums)):
-            prefix_sum += nums[i]
-            rem = prefix_sum % k
-            if rem in freq:
-                if i - freq[rem] > 1:
+            prefix_sum+=nums[i]
+            ques=prefix_sum%k
+            if ques in freq:
+                if i-freq[ques]>=2:
                     return True
             else:
-                freq[rem] = i
+                freq[ques]=i
         return False
