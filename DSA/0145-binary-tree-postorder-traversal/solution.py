@@ -5,14 +5,14 @@
 #         self.left = left
 #         self.right = right
 class Solution(object):
-    def fun(self,node,res):
-        if node is None:
+    def fun(self,root,res):
+        if root is None:
             return
-        self.fun(node.left,res)
-        self.fun(node.right,res)
-        res.append(node.val)
+        self.fun(root.left,res)
+        self.fun(root.right,res)
+        res.append(root.val)
         return
-        
+
     def postorderTraversal(self, root):
         """
         :type root: Optional[TreeNode]
@@ -21,4 +21,3 @@ class Solution(object):
         res=[]
         self.fun(root,res)
         return res
-        

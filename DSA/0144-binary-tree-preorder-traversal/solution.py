@@ -5,12 +5,12 @@
 #         self.left = left
 #         self.right = right
 class Solution(object):
-    def fun(self,node,res):
-        if node is None:
+    def fun(self,root,res):
+        if root is None:
             return
-        res.append(node.val)
-        self.fun(node.left,res)
-        self.fun(node.right,res)
+        res.append(root.val)
+        self.fun(root.left,res)
+        self.fun(root.right,res)
         return
         
     def preorderTraversal(self, root):
