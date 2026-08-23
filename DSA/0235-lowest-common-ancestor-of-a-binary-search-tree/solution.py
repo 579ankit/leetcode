@@ -8,19 +8,16 @@
 class Solution(object):
     def fun(self,root,p,q):
         if root is None:
-            return None
-
+            return 
         if root==p or root==q:
             return root
-
-        if p.val < root.val and q.val < root.val:
-            return self.fun(root.left, p, q)
-
-        elif p.val > root.val and q.val > root.val:
-            return self.fun(root.right, p, q)
-
+        if root.val>p.val and root.val>q.val:
+            return self.fun(root.left,p,q)
+        elif root.val<p.val and root.val<q.val:
+            return self.fun(root.right,p,q)
         else:
             return root
+
     def lowestCommonAncestor(self, root, p, q):
         """
         :type root: TreeNode
