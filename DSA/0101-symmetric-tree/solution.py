@@ -14,7 +14,11 @@ class Solution(object):
             return False
         r1=self.fun(root1.left,root2.right)
         r2=self.fun(root1.right,root2.left)
-        return r1 and r2
+        if r1 and r2:
+            return True
+        else:
+            return False
+        return
         
     def isSymmetric(self, root):
         """

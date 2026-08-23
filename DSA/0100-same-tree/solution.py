@@ -19,4 +19,8 @@ class Solution(object):
             return False
         left_part=self.isSameTree(p.left,q.left)
         right_part=self.isSameTree(p.right,q.right)
-        return left_part and right_part
+        if left_part and right_part:
+            return True
+        else:
+            return False
+        
