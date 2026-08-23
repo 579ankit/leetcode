@@ -10,7 +10,7 @@ class Solution(object):
             level=[0]*size
             first=0
             last=size-1
-            for _ in range(size):
+            for _ in range(size):  
                 node=queue.popleft()
                 if left_to_right:
                     level[first]=node.val
