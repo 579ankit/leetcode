@@ -5,20 +5,19 @@
 #         self.left = left
 #         self.right = right
 class Solution(object):
-    def fun(self,root1,root2):
-        if root1 is None and root2 is None:
+    def fun(self,p,q):
+        if p is None and q is None:
             return True
-        if root1 is None or root2 is None:
+        if p is None or q is None:
             return False
-        if root1.val!=root2.val:
+        if p.val!=q.val:
             return False
-        r1=self.fun(root1.left,root2.right)
-        r2=self.fun(root1.right,root2.left)
+        r1=self.fun(p.left,q.right)
+        r2=self.fun(p.right,q.left)
         if r1 and r2:
             return True
         else:
             return False
-        return
         
     def isSymmetric(self, root):
         """

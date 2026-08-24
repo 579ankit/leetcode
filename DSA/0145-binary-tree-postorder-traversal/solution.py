@@ -13,8 +13,8 @@ class Solution(object):
         """
         if root is None:
             return []
-        res=[]
-        res+=self.postorderTraversal(root.left)
-        res+=self.postorderTraversal(root.right)
-        res.append(root.val)
-        return res
+        return (
+            self.postorderTraversal(root.left) +
+            self.postorderTraversal(root.right) +
+            [root.val]
+        )
