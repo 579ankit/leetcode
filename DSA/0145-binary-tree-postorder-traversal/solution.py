@@ -5,19 +5,16 @@
 #         self.left = left
 #         self.right = right
 class Solution(object):
-    def fun(self,root,res):
-        if root is None:
-            return
-        self.fun(root.left,res)
-        self.fun(root.right,res)
-        res.append(root.val)
-        return
 
     def postorderTraversal(self, root):
         """
         :type root: Optional[TreeNode]
         :rtype: List[int]
         """
+        if root is None:
+            return []
         res=[]
-        self.fun(root,res)
+        res+=self.postorderTraversal(root.left)
+        res+=self.postorderTraversal(root.right)
+        res.append(root.val)
         return res
