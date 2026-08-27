@@ -1,7 +1,11 @@
-select s.name from salesperson s where s.name not in
-(select s.name from salesperson s join orders o
-on s.sales_id = o.sales_id join company c on
-o.com_id = c.com_id where c.name = 'RED');
-
-
-
+SELECT 
+    s.name
+FROM salesperson s
+WHERE NOT EXISTS (
+    SELECT 1
+    FROM orders o
+    JOIN company c
+        ON o.com_id = c.com_id
+    WHERE o.sales_id = s.sales_id
+      AND c.name = 'RED'
+);

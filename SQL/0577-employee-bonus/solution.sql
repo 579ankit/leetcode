@@ -4,6 +4,4 @@ select
 from employee e
 left join bonus b
 on e.empid=b.empid
-where 
-    b.bonus<1000
-or b.empid is null;
+where b.bonus<1000 or b.empid is null;
