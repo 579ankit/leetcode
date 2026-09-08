@@ -5,9 +5,8 @@ select
 from prompts
 group by user_id
 having 
-    count(*)>=3
+    count(*)>=3 
 and max(tokens)>avg(tokens)
 order by 
-    avg_tokens desc,
-    user_id;
-
+    avg(tokens) desc,
+    user_id asc;
